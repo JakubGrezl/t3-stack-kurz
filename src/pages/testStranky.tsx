@@ -5,8 +5,9 @@ const TestStranky: NextPage = () => {
   const [cislo, setCislo] = useState(0);
 
   return (
-    <div>
+    <div className="p-4">
       <button
+        className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         onClick={() => {
           setCislo(cislo + 1);
         }}
@@ -15,6 +16,7 @@ const TestStranky: NextPage = () => {
       </button>{" "}
       <br />
       <button
+        className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
         onClick={() => {
           setCislo(cislo - 1);
         }}
@@ -22,7 +24,7 @@ const TestStranky: NextPage = () => {
         odečíst
       </button>{" "}
       <br />
-      <p>číslo: {cislo}</p>
+      <p className="mt-4">číslo: {cislo}</p>
     </div>
   );
 };
