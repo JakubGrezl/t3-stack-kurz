@@ -11,6 +11,8 @@ import DiscordProvider from "next-auth/providers/discord";
 import { env } from "@/env";
 import { db } from "@/server/db";
 
+import CredentialsProvider from "next-auth/providers/credentials";
+
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
@@ -52,6 +54,16 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        console.log(credentials);
+      },
     }),
     /**
      * ...add more providers here.

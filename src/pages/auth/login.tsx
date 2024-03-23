@@ -1,14 +1,11 @@
 import type { NextPage } from "next";
 import { useState } from "react";
-import dynamic from "next/dynamic";
-
-const Lottie = dynamic(() => import("lottie-react"), {
-  ssr: false,
-});
+import LoadingOverlay from "@/common/modules/components/LoadingOverlay/LoadingOverlay";
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -23,11 +20,13 @@ const Login: NextPage = () => {
 
     setEmail("");
     setPassword("");
+    setIsLoading(false);
     // Add your login logic here
   };
 
   return (
     <div className="flex h-screen items-center justify-center">
+      <LoadingOverlay isPending={isLoading} />
       <form
         className="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"
         onSubmit={handleSubmit}
